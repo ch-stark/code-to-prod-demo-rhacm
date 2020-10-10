@@ -12,7 +12,7 @@ metadata:
     apps.open-cluster-management.io/git-path: .
     apps.open-cluster-management.io/git-branch: stage
 spec:
-  channel: argocd-operator-gitops/argocd-operator-channel
+  channel: reverse-words-cicd
   name: argocd-sub
   placement:
     placementRef:
