@@ -19,6 +19,21 @@ echo "RHACM"
 #oc apply -f v2_subscription.yaml  -n open-cluster-management
 #oc apply -f v2_multiclusterhub.yaml -n open-cluster-management
 
+cat <<EOF | oc -n openshift-operators create -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: openshift-pipelines-operator-rh
+spec:
+  channel: ocp-4.5
+  installPlanApproval: Automatic
+  name: openshift-pipelines-operator-rh
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+EOF
+
+
+
 sleep 120
 mkdir -p /var/tmp/code-to-prod-demo
 git clone git@github.com:mvazquezc/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
