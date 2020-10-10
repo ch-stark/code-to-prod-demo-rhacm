@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: apply-to-ready-clusters
-  namespace: gitops
+  namespace: gitops_dev
 spec:
   clusterConditions:
   - status: "True"
