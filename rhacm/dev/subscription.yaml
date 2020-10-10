@@ -9,7 +9,8 @@ metadata:
   name: dev-sub
   namespace: dev
   annotations:
-    apps.open-cluster-management.io/github-path: base/02_cluster-addons/03_argocd
+    apps.open-cluster-management.io/git-path: .
+    apps.open-cluster-management.io/git-branch: prod
 spec:
   channel: argocd-operator-gitops/argocd-operator-channel
   name: argocd-sub
