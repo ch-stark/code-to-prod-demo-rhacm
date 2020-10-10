@@ -12,8 +12,8 @@ metadata:
     apps.open-cluster-management.io/git-path: .
     apps.open-cluster-management.io/git-branch: stage
 spec:
-  channel: reverse-words-cicd
-  name: argocd-sub
+  channel: gitops-dev/reverse-words-cicd
+  name: reverse-words-cicd-dev
   placement:
     placementRef:
       kind: PlacementRule
