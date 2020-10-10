@@ -19,6 +19,8 @@ echo "RHACM"
 #oc apply -f v2_subscription.yaml  -n open-cluster-management
 #oc apply -f v2_multiclusterhub.yaml -n open-cluster-management
 
+#https://docs.openshift.com/container-platform/4.5/pipelines/installing-pipelines.html
+
 cat <<EOF | oc -n openshift-operators create -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
