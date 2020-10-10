@@ -9,7 +9,8 @@ metadata:
   name: argocd-sub
   namespace: argocd
   annotations:
-    apps.open-cluster-management.io/github-path: base/02_cluster-addons/03_argocd
+    apps.open-cluster-management.io/git-path: sample-resources
+    apps.open-cluster-management.io/reconcile-option: replace
 spec:
   channel: argocd-operator-gitops/argocd-operator-channel
   name: argocd-sub
