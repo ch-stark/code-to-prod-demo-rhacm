@@ -11,18 +11,13 @@ echo ""
 mkdir -p /var/tmp/code-to-prod-demo/
 echo "RHACM"
 
-git clone https://github.com/ch-stark/acminstall
-
-cd acminstall/rhacmv2
-
-oc apply -f v2_namespace.yaml -n open-cluster-management
-
+#git clone https://github.com/ch-stark/acminstall
+#cd acminstall/rhacmv2
+#oc apply -f v2_namespace.yaml -n open-cluster-management
 #oc create secret generic pull-secret -n open-cluster-management --from-file=.dockerconfigjson=../../pull-secret --type=kubernetes.io/dockerconfigjson
-
-oc apply -f v2_operatorgroup.yaml -n open-cluster-management
-oc apply -f v2_subscription.yaml  -n open-cluster-management
-
-oc apply -f v2_multiclusterhub.yaml -n open-cluster-management
+#oc apply -f v2_operatorgroup.yaml -n open-cluster-management
+#oc apply -f v2_subscription.yaml  -n open-cluster-management
+#oc apply -f v2_multiclusterhub.yaml -n open-cluster-management
 
 sleep 120
 mkdir -p /var/tmp/code-to-prod-demo
