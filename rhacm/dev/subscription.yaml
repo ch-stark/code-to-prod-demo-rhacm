@@ -10,12 +10,12 @@ metadata:
   namespace: gitops_dev
   annotations:
     apps.open-cluster-management.io/git-path: .
-    apps.open-cluster-management.io/git-branch: prod
+    apps.open-cluster-management.io/git-branch: stage
 spec:
   channel: argocd-operator-gitops/argocd-operator-channel
   name: argocd-sub
   placement:
     placementRef:
       kind: PlacementRule
-      name: apply-argocd-to-ready-clusters
+      name: gitops_dev
       apiGroup: apps.open-cluster-management.io
