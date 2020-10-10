@@ -1,8 +1,8 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
-  name: argocd-operator-channel
-  namespace: argocd-operator-gitops
+  name: reverse-words-cicd
+  namespace: reverse-words-cicd
 spec:
   type: Git
-  pathname: https://github.com/redhat-edge-computing/blueprint-management-hub.git
+  pathname: https://github.com/mvazquezc/reverse-words-cicd.git
