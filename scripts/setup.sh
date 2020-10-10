@@ -18,7 +18,6 @@ cd acminstall/rhacmv2
 oc apply -f v2_namespace.yaml -n open-cluster-management
 
 #oc create secret generic pull-secret -n open-cluster-management --from-file=.dockerconfigjson=../../pull-secret --type=kubernetes.io/dockerconfigjson
-Create and apply an OperatorGroup and Subscription to Red Hat Advanced Cluster Management with the following commands:
 
 oc apply -f v2_operatorgroup.yaml -n open-cluster-management
 oc apply -f v2_subscription.yaml  -n open-cluster-management
