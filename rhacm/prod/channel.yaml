@@ -6,4 +6,4 @@ metadata:
 spec:
   type: Git
   pathname: https://github.com/mvazquezc/reverse-words-cicd.git
-  branch: Prod
+  branch: stage
