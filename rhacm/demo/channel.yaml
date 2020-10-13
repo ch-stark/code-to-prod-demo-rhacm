@@ -6,4 +6,4 @@ metadata:
   annotations: apps.open-cluster-management.io/webhook-enabled="true"
 spec:
   type: Git
-  pathname: https://github.com/mvazquezc/reverse-words-cicd.git
+  pathname: https://github.com/ch-stark/reverse-words-cicd.git
