@@ -1,0 +1,27 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: warehouse-management-application
+spec:
+  componentKinds:
+  - group: apps.open-cluster-management.io
+    kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - mongo-aws-managed-dublin-pro-app
+      - mongo-bm-managed-frankfurt-pro-app
+      - mongo-gcp-managed-iowa-pro-app 
+      - kafka-cluster
+      - orders-aws-managed-dublin-pro-app
+      - orders-bm-managed-frankfurt-pro-app
+      - orders-gcp-managed-iowa-pro-app
+      - stock-aws-managed-dublin-pro-app
+      - stock-bm-managed-frankfurt-pro-app
+      - stock-gcp-managed-iowa-pro-app
+      - wh-service-aws-managed-dublin-pro-app
+      - wh-service-bm-managed-frankfurt-pro-app
+      - wh-service-gcp-managed-iowa-pro-app
