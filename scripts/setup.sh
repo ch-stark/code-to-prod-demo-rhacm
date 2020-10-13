@@ -71,7 +71,7 @@ oc -n reversewords-ci create -f build-task.yaml
 oc -n reversewords-ci create -f image-updater-task.yaml
 sed -i "s|<reversewords_git_repo>|https://github.com/mvazquezc/reverse-words|" build-pipeline.yaml
 sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" build-pipeline.yaml
-sed -i "s|<golang_package>|github.com/mvazquezc/reverse-words|" build-pipeline.yaml
+sed -i "s|<golang_package>|github.com/ch-stark/reverse-words|" build-pipeline.yaml
 sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" build-pipeline.yaml
 oc -n reversewords-ci create -f build-pipeline.yaml
 oc -n reversewords-ci create -f webhook-roles.yaml
@@ -84,7 +84,7 @@ sed -i "s/- name: pipeline-binding/- name: github-triggerbinding/" webhook.yaml
 oc -n reversewords-ci create -f webhook.yaml
 oc -n reversewords-ci create -f curl-task.yaml
 oc -n reversewords-ci create -f get-stage-release-task.yaml
-sed -i "s|<reversewords_cicd_git_repo>|https://github.com/mvazquezc/reverse-words-cicd|" promote-to-prod-pipeline.yaml
+sed -i "s|<reversewords_cicd_git_repo>|https://github.com/ch-stark/reverse-words-cicd|" promote-to-prod-pipeline.yaml
 sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" promote-to-prod-pipeline.yaml
 sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" promote-to-prod-pipeline.yaml
 sed -i "s|<stage_deployment_file_path>|./deployment.yaml|" promote-to-prod-pipeline.yaml
