@@ -2,8 +2,10 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   name: reverse-words-cicd-dev
-  namespace: gitops-dev
-  annotations: apps.open-cluster-management.io/webhook-enabled="true"
+  namespace: gitops
+    annotations: 
+      apps.open-cluster-management.io/webhook-enabled: "true"
 spec:
   type: Git
   pathname: https://github.com/ch-stark/reverse-words-cicd.git
+
