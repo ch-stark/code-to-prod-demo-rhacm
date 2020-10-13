@@ -77,6 +77,9 @@ oc -n reversewords-ci create -f promote-to-prod-pipeline.yaml
 oc -n reversewords-ci create route edge reversewords-webhook --service=el-reversewords-webhook --port=8080 --insecure-policy=Redirect
 sleep 15
 
+oc create route passthrough --service=multiclusterhub-operator-webhook -n open-cluster-management
+
+
 CONSOLE_ROUTE=$(oc -n openshift-console get route console -o jsonpath='{.spec.host}')
 RHACM_ROUTE=$(oc -n open-cluster-management get route multicloud-console -o jsonpath='{.spec.host}')
 echo "OCP Console: $CONSOLE_ROUTE"
