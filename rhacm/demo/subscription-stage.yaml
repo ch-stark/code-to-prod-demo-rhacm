@@ -1,8 +1,8 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
-  name: dev-sub
-  namespace: gitops_dev
+  name: sub-strage
+  namespace: gitops_stage
   labels:
     app: reverse-words-dev 
   annotations:
