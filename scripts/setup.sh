@@ -21,18 +21,18 @@ echo "RHACM"
 
 #https://docs.openshift.com/container-platform/4.5/pipelines/installing-pipelines.html
 
-export MACHINESETS=$(oc get machineset -n openshift-machine-api -o json | jq '.items[]|.metadata.name' -r )
+#export MACHINESETS=$(oc get machineset -n openshift-machine-api -o json | jq '.items[]|.metadata.name' -r )
+#
+#for ms in $MACHINESETS
+#do
+#   oc scale  MACHINESET $ms --replicas=0 -n openshift-machine-api
+#   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"spotMarketOptions":{"maxPrice":0.51}}}}}}}' --type=merge  -n openshift-machine-api
+#   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"instanceType":"m5.xlarge"}}}}}}' --type=merge  -n openshift-machine-api
+#   oc scale  MACHINESET $ms --replicas=1 -n openshift-machine-api
+#done
 
-for ms in $MACHINESETS
-do
-   oc scale  MACHINESET $ms --replicas=0 -n openshift-machine-api
-   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"spotMarketOptions":{"maxPrice":0.51}}}}}}}' --type=merge  -n openshift-machine-api
-   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"instanceType":"m5.xlarge"}}}}}}' --type=merge  -n openshift-machine-api
-   oc scale  MACHINESET $ms --replicas=1 -n openshift-machine-api
-done
 
-
-sleep 300
+#sleep 300
 
 
 
