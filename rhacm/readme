@@ -1,2 +1,5 @@
+For running this Demo it is required to have a Hub-Cluster and two Spoke Cluster.
+
+
 oc create route passthrough --service=multiclusterhub-operator-webhook -n open-cluster-management
 oc annotate channel.apps.open-cluster-management.io <channel name> apps.open-cluster-management.io/webhook-enabled="true"
