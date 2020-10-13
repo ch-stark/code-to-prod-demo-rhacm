@@ -3,7 +3,7 @@ kind: Channel
 metadata:
   name: reverse-words-cicd-dev
   namespace: gitops-dev
-  apps.open-cluster-management.io/webhook-enabled="true"
+  annotations: apps.open-cluster-management.io/webhook-enabled="true"
 spec:
   type: Git
   pathname: https://github.com/mvazquezc/reverse-words-cicd.git
