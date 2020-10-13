@@ -4,7 +4,7 @@ metadata:
   name: apply-to-ready-clusters
   namespace: gitops_prod
   labels:
-   app: stock-gcp-managed-iowa-pro-app
+   app: reversewords-prod
 spec:
   clusterConditions:
   - status: "True"
