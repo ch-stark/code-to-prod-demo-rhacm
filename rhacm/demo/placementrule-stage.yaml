@@ -3,6 +3,8 @@ kind: PlacementRule
 metadata:
   name: apply-to-ready-clusters
   namespace: gitops_stage
+  labels:  reversewords_stage
+    
 spec:
   clusterConditions:
   - status: "True"
