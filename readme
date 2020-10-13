@@ -293,6 +293,27 @@ generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
 
 
 
+Describing the flow:
+
+WorkFlow
+
+Stage:
+
+1. Developers push new code into the Git repository
+2. GitHub triggers the build Pipeline which lints, tests and builds the code
+3. Tekton Pushes a new image with the new code to Quay
+4. Tekton updates the Deployment manifest on the cicd repo with the new image
+5. GitHub triggers the deployment of the new image to the stage environment
+6. RHACM-Gitops (stage-subscription) syncs the Stage Application which deployes the updated manifests
+
+ToProd:
+
+1. Developers trigger the Promotion Pipeline
+2. Tekton reads the Stage configuration from Git, runs some tests against the live application
+3. Once the PR is validated and merged GITHUB triggers the deployment of the new images
+4.  RHACM-Gitops (stage-subscription) syncs the Prod Application which deployes the updated manifests
+
+
 
 
 
