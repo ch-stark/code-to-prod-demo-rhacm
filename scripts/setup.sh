@@ -51,10 +51,9 @@ EOF
 
 
 
-sleep 120
 mkdir -p /var/tmp/code-to-prod-demo
-git clone git@github.com:mvazquezc/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
-git clone git@github.com:mvazquezc/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
+git clone git@github.com:ch-stark/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
+git clone git@github.com:ch-stark/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
 cd /var/tmp/code-to-prod-demo/reverse-words-cicd
 git checkout ci
 sleep 10
