@@ -3,6 +3,8 @@ kind: PlacementRule
 metadata:
   name: apply-to-ready-clusters
   namespace: gitops_prod
+  labels:
+   app: stock-gcp-managed-iowa-pro-app
 spec:
   clusterConditions:
   - status: "True"
