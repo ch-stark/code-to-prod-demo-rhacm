@@ -26,7 +26,6 @@ WebHooks
 First lets create the necessary secrets:
 
 oc -n gitops create secret generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
-oc -n open-cluster-management create secret generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
 
 
 We are going to use WebHooks in order to run Pipelines automatically when new commits hit the branches of our app and cicd repositories.
