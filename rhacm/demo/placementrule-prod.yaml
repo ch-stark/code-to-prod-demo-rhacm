@@ -1,11 +1,18 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: apply-to-ready-clusters
-  namespace: gitops_prod
+  name: apply-to-prod-clusters
+  namespace: gitops
   labels:
    app: reversewords-prod
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - type: "ManagedClusterConditionAvailable"
+      status: "True"
+  clusterSelector:
+    matchExpressions: []
+    matchLabels: 
+      env: "prod"
+  clusterReplicas: 1
+
+
