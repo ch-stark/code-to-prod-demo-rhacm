@@ -18,6 +18,12 @@ https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_managemen
 
 WebHooks
 
+First lets create the necessary secrets:
+
+oc -n gitops create secret generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
+oc -n open-cluster-management create secret generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
+
+
 We are going to use WebHooks in order to run Pipelines automatically when new commits hit the branches of our app and cicd repositories.
 
 * Our first webhook will receive events from the application repository, when new code hits the main branch we will trigger the build pipeline.
@@ -83,3 +89,5 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
         tkn -n reversewords-ci pipeline start reverse-words-promote-pipeline -r app-git=reverse-words-cicd-git -p pathToDeploymentFile=./deployment.yaml -p stageBranch=stage -p stageAppUrl=$(oc -n reverse-words-stage get route -l app=reversewords-stage -o jsonpath='{.items[*].spec.host}')
         ~~~
 
+
+generic webhooksecret  --from-literal=password=$WEBHOOK_SECRET
