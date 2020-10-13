@@ -8,6 +8,8 @@ kind: Subscription
 metadata:
   name: dev-sub
   namespace: gitops_prod
+  labels:
+    app: reverse-words-prod 
   annotations:
     apps.open-cluster-management.io/git-path: .
     apps.open-cluster-management.io/git-branch: prod
