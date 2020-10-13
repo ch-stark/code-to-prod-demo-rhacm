@@ -15,7 +15,7 @@ metadata:
     apps.open-cluster-management.io/git-branch: stage
 spec:
   channel: gitops/reverse-words-cicd
-  name: reverse-words-cicd-dev
+  name: reverse-words-cicd
   placement:
     placementRef:
       kind: PlacementRule
