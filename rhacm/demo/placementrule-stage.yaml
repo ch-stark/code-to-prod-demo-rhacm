@@ -1,11 +1,14 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: apply-to-ready-clusters
-  namespace: gitops_stage
-  labels:  reversewords_stage
-    
+  name: apply-to-stage-clusters
+  namespace: gitops
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - type: "ManagedClusterConditionAvailable"
+      status: "True"
+  clusterSelector:
+    matchExpressions: []
+    matchLabels: 
+      env: "stage"
+  clusterReplicas: 1
