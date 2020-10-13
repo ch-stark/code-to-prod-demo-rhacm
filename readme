@@ -40,7 +40,7 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
        
 2. Now, we will configure the second webhook to react to changes on the cicd repository
    
-    1. Go to your cicd repository on GitHub, eg: https://github.com/mvazquezc/reverse-words-cicd
+    1. Go to your cicd repository on GitHub, eg: https://github.com/ch-stark/reverse-words-cicd
     2. Click on `Settings` -> `Webhooks`
     3. Create the following `Hook`
        1. `Payload URL`: Output of command ` oc get route  multiclusterhub-operator-webhook -n open-cluster-management
