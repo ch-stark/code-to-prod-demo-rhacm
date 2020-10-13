@@ -5,6 +5,7 @@ metadata:
   namespace: gitops
   annotations:
     apps.open-cluster-management.io/webhook-enabled: "true"
+    apps.open-clustermanagement.io/webhook-secret: webhooksecret
 spec:
   secretRef:
     name: webhooksecret
