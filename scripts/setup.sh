@@ -21,6 +21,18 @@ echo "RHACM"
 
 #https://docs.openshift.com/container-platform/4.5/pipelines/installing-pipelines.html
 
+for ms in $MACHINESETS
+do
+   oc scale  MACHINESET $ms --replicas=0 -n openshift-machine-api
+   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"spotMarketOptions":{"maxPrice":0.51}}}}}}}' --type=merge  -n openshift-machine-api
+   oc patch MACHINESET $ms -p='{"spec":{"template":{"spec":{"providerSpec":{"value":{"instanceType":"m5.xlarge"}}}}}}' --type=merge  -n openshift-machine-api
+   oc scale  MACHINESET $ms --replicas=1 -n openshift-machine-api
+done
+
+sleep 300
+
+
+
 cat <<EOF | oc -n openshift-operators create -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
