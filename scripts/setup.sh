@@ -66,19 +66,29 @@ oc -n reversewords-ci delete secret image-updater-secret
 oc -n reversewords-ci create secret generic image-updater-secret --from-literal=token=${GIT_AUTH_TOKEN}
 oc -n reversewords-ci  apply -f quay-credentials.yaml
 oc -n reversewords-ci  apply -f pipeline-sa.yaml
-oc -n reversewords-ci  apply -f lint-task.yaml
-oc -n reversewords-ci  apply -f test-task.yaml
-oc -n reversewords-ci  apply -f build-task.yaml
-oc -n reversewords-ci  apply -f image-updater-task.yaml
+oc -n reversewords-ci  delete -f lint-task.yaml
+oc -n reversewords-ci  create -f lint-task.yaml
+oc -n reversewords-ci  delete -f test-task.yaml
+oc -n reversewords-ci  create -f test-task.yaml
+oc -n reversewords-ci  delete -f build-task.yaml
+oc -n reversewords-ci  create -f build-task.yaml
+oc -n reversewords-ci  delete -f image-updater-task.yaml
+oc -n reversewords-ci  create -f image-updater-task.yaml
+
 
 sed -i "s|<reversewords_git_repo>|https://github.com/mvazquezc/reverse-words|" build-pipeline.yaml
 sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" build-pipeline.yaml
 sed -i "s|<golang_package>|github.com/ch-stark/reverse-words|" build-pipeline.yaml
 sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" build-pipeline.yaml
 
-oc -n reversewords-ci  apply -f build-pipeline.yaml
-oc -n reversewords-ci  apply -f webhook-roles.yaml
-oc -n reversewords-ci  apply -f github-triggerbinding.yaml
+oc -n reversewords-ci  delete -f build-pipeline.yaml
+oc -n reversewords-ci  create -f build-pipeline.yaml
+oc -n reversewords-ci  delete -f webhook-roles.yaml
+oc -n reversewords-ci  create -f webhook-roles.yaml
+oc -n reversewords-ci  delete -f build-pipeline.yaml
+oc -n reversewords-ci  create -f build-pipeline.yaml
+oc -n reversewords-ci  delete -f github-triggerbinding.yaml
+oc -n reversewords-ci  create -f github-triggerbinding.yaml
 
 WEBHOOK_SECRET="v3r1s3cur3"
 
@@ -86,13 +96,19 @@ oc -n reversewords-ci create secret generic webhook-secret --from-literal=secret
 sed -i "s/<git-triggerbinding>/github-triggerbinding/" webhook.yaml
 sed -i "/ref: github-triggerbinding/d" webhook.yaml
 sed -i "s/- name: pipeline-binding/- name: github-triggerbinding/" webhook.yaml
-oc -n reversewords-ci  apply -f webhook.yaml
-oc -n reversewords-ci  apply -f curl-task.yaml
-oc -n reversewords-ci apply -f get-stage-release-task.yaml
+
+oc -n reversewords-ci  delete -f webhook.yaml
+oc -n reversewords-ci  create -f webhook.yaml
+oc -n reversewords-ci  delete -f curl-task.yaml
+oc -n reversewords-ci  create -f curl-task.yaml
+oc -n reversewords-ci delete -f get-stage-release-task.yaml
+oc -n reversewords-ci create -f get-stage-release-task.yaml
 sed -i "s|<reversewords_cicd_git_repo>|https://github.com/ch-stark/reverse-words-cicd|" promote-to-prod-pipeline.yaml
 sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" promote-to-prod-pipeline.yaml
 sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" promote-to-prod-pipeline.yaml
 sed -i "s|<stage_deployment_file_path>|./deployment.yaml|" promote-to-prod-pipeline.yaml
+
+oc -n reversewords-ci delete -f promote-to-prod-pipeline.yaml
 oc -n reversewords-ci create -f promote-to-prod-pipeline.yaml
 oc -n reversewords-ci create route edge reversewords-webhook --service=el-reversewords-webhook --port=8080 --insecure-policy=Redirect
 sleep 15
