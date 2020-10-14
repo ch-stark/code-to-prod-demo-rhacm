@@ -11,15 +11,39 @@ do
    oc scale  MACHINESET $ms --replicas=1 -n openshift-machine-api
 done
 
+Create the Spoke-Cluser
+
+git clone:
+https://github.com/ch-stark/openshift-modern-availability/blob/master/cluster-preparation.md
+
+you need a properties file:
+
+export ssh_key=$(cat ~/.ssh/ocp_rsa | sed 's/^/  /')
+export ssh_pub_key=$(cat ~/.ssh/ocp_rsa.pub)
+export pull_secret=$(cat pullsecret.json)
+export aws_id=$(cat ~/.aws/credentials | grep aws_access_key_id | cut -d'=' -f 2)
+export aws_key=$(cat ~/.aws/credentials | grep aws_secret_access_key | cut -d'=' -f 2)
+export base_domain=$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
+export base_domain=${base_domain#*.}
+export cluster_release_image=quay.io/openshift-release-dev/ocp-release:$(oc get clusteroperator config-operator -o jsonpath='{.status.versions[0].version}')-x86_64
+
+create two Spoke-Clusters folllowing the docu:
+create clusters
+
+
 Please consult the Documentation for more info:
 
 https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.0/html/manage_applications/managing-applications
+
+
+Prepare the Demo
 
 Checkout-Repositories
 
 mkdir -p /var/tmp/code-to-prod-demo/
 git clone git@github.com:ch-stark/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
 git clone git@github.com:ch-stark/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
+
 
 WebHooks
 
