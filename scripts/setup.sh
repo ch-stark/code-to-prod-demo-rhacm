@@ -50,11 +50,12 @@ spec:
 EOF
 
 
-
+rm -rf /var/tmp/code-to-prod-demo
 mkdir -p /var/tmp/code-to-prod-demo
 git clone git@github.com:ch-stark/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
 git clone git@github.com:ch-stark/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
 cd /var/tmp/code-to-prod-demo/reverse-words-cicd
+
 git checkout ci
 sleep 10
 echo "Create Tekton resources for the demo"
@@ -69,14 +70,18 @@ oc -n reversewords-ci  apply -f lint-task.yaml
 oc -n reversewords-ci  apply -f test-task.yaml
 oc -n reversewords-ci  apply -f build-task.yaml
 oc -n reversewords-ci  apply -f image-updater-task.yaml
+
 sed -i "s|<reversewords_git_repo>|https://github.com/mvazquezc/reverse-words|" build-pipeline.yaml
 sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" build-pipeline.yaml
 sed -i "s|<golang_package>|github.com/ch-stark/reverse-words|" build-pipeline.yaml
 sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" build-pipeline.yaml
+
 oc -n reversewords-ci  apply -f build-pipeline.yaml
 oc -n reversewords-ci  apply -f webhook-roles.yaml
 oc -n reversewords-ci  apply -f github-triggerbinding.yaml
+
 WEBHOOK_SECRET="v3r1s3cur3"
+
 oc -n reversewords-ci create secret generic webhook-secret --from-literal=secret=${WEBHOOK_SECRET}
 sed -i "s/<git-triggerbinding>/github-triggerbinding/" webhook.yaml
 sed -i "/ref: github-triggerbinding/d" webhook.yaml
