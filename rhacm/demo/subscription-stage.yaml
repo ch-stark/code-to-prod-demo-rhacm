@@ -14,5 +14,5 @@ spec:
   placement:
     placementRef:
       kind: PlacementRule
-      name: gitops-stage
+      name: apply-to-stage-clusters
       apiGroup: apps.open-cluster-management.io
