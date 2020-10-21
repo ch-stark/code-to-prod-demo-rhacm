@@ -14,5 +14,5 @@ spec:
   placement:
     placementRef:
       kind: PlacementRule
-      name: gitops-prod
+      name: apply-to-prod-clusters
       apiGroup: apps.open-cluster-management.io
