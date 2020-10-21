@@ -9,10 +9,4 @@ spec:
   clusterConditions:
     - type: "ManagedClusterConditionAvailable"
       status: "True"
-  clusterSelector:
-    matchExpressions: []
-    matchLabels: 
-      env: "prod"
-  clusterReplicas: 1
-
 
